@@ -6,11 +6,11 @@ usersRouter.get('/', (req, res) => {
 });
 
 usersRouter.get('/:id', (req, res) => {
-  const userIndex = users.findIndex((user) => user._id === req.params.id);
-  if (userIndex < 0) {
+  const desiredUser = users.find((user) => user._id === req.params.id);
+  if (desiredUser === 'undefined') {
     res.status(404).send({ message: 'Нет пользователя с таким id' });
   } else {
-    res.send(users[userIndex]);
+    res.send(desiredUser);
   }
 });
 
